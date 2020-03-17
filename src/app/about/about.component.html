@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="bg border">
+    <div class="card-header text-center bg-primary" >About</div>
+     <div class="card-body border-primary">
+       <h4>Les infos</h4>
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item">Nom : <strong>{{infos.nom}}</strong></li>
+            <li class="list-group-item">Email : <strong>{{infos.email}}</strong></li>
+          </ul>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Message:</label>
+          <input type="text" class="form-control" [(ngModel)]="commentaire.message">
+          <button class="btn btn-primary" (click)="add()" [disabled] ="!commentaire.message">Add commentaire</button>
+        </div>
+
+         <h4>Les commentaire</h4>
+        <div>
+          <ul class="list-group">
+            <li *ngFor="let c of comment" class="list-group-item">
+              {{c.message}},
+              <span class="badge badge-primary ">{{c.date | date:'short'}}</span>
+            </li>
+          </ul>
+        </div>
+       <ul class="list-group">
+         <div class="row">
+           <div class="col">
+             <form [formGroup]="editForm" (ngSubmit)="ajoute()">
+               <div class="form-group">
+                 <label for="Title">Title</label>
+                 <input type="text" class="form-control" formControlName="title">
+               </div>
+               <button class="btn btn-primary">
+                 Enregistrer
+               </button>
+             </form>
+           </div>
+           <div class="col">
+             <table class="table">
+             <tr>
+               <td>ID</td>
+               <td>title</td>
+             </tr>
+             <tr *ngFor="let T of tasks">
+               <td>{{ T.id }}</td>
+               <td>{{ T.title }}</td>
+             </tr>
+           </table>
+           </div>
+         </div>
+       </ul>
+    </div>
+  </div>
+</div>
